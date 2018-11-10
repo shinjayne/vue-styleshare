@@ -15,6 +15,9 @@ export default {
   @import '@/assets/style/color.scss';
 
   .item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 15px;
     background-color: $color-gray-50;
     border: 1px solid $color-gray-100;

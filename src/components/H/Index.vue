@@ -76,6 +76,9 @@ export default {
     &.orange{
       color: $color-orange;
     }    
+    &.blue{
+      color: $color-blue;
+    }
   }
 </style>
 
