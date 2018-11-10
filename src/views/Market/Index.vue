@@ -1,0 +1,48 @@
+<template>
+  <base-layout title="Market" subtitle="원하는 물품을 장바구니에!">
+
+  <!-- Goods 카드 리스트 -->
+  <v-goods-card v-for="goods in getGoodsList" 
+  class="goods-card"
+  :key="goods.id"
+  :name="goods.name"
+  :provider="goods.provider"
+  :price="goods.price"
+  @click="$router.push({name:'goods-detail.index', query:{id:String(goods.id)}})"/>
+  </base-layout>
+
+</template>
+
+<script>
+import {mapGetters, mapActions} from 'vuex';
+
+import BaseLayout from '@/layouts/Base';
+import VH from '@/components/H/Index';
+import VGoodsCard from '@/components/Card/Goods.vue';
+
+export default {
+  name: 'market-view',
+
+  components: {
+    BaseLayout,
+    VH,
+    VGoodsCard,
+  },
+
+  computed:{
+    ...mapGetters({
+      getGoodsList: 'market/getGoodsList',
+    }),
+  },
+  
+}
+</script>
+
+<style lang="scss" scoped>
+  .goods-card{
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+</style>
+
+
