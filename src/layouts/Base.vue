@@ -4,10 +4,12 @@
       <router-link :to="{name:'market.index'}">
         <v-h size="first" theme="light">StyleShare Store</v-h>
       </router-link>
-      <v-button size="big" color="white" class="basket">
-        장바구니 
-        <v-dot v-if="getMyBasketLength!=0" class="dot">{{getMyBasketLength}}</v-dot>
-      </v-button>
+      <router-link :to="{name:'basket.index'}">
+        <v-button size="big" color="white" class="basket">
+          장바구니 
+          <v-dot v-if="getMyBasketLength!=0" class="dot">{{getMyBasketLength}}</v-dot>
+        </v-button>
+      </router-link>
     </div>
     <!-- 여기 Slot 에 각 페이지별 컨텐츠가 나타납니다!  -->
     <div class="container">

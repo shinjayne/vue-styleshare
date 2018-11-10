@@ -32,6 +32,17 @@ export default [
       auth: false,
     },
   },
+  // 내 장바구니 페이지
+  {
+    path: '/basket',
+    name: 'basket.index',
+    component: () => import('@/views/Basket/Index.vue'),
+
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: false,
+    },
+  },  
 
   // 모든 페이지는 market 으로 통한다.
   {
