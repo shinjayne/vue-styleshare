@@ -73,10 +73,6 @@ export default {
   @import '@/assets/style/color.scss';
 
   .option-item{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
     .title{
       display: flex;
       .info{

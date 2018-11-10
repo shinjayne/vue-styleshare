@@ -35,7 +35,14 @@
     class="option-item"/>
     
     <!-- 장바구니 담기 버튼  -->
-    <v-button v-if="selectedOptions.length > 0" color="main" size="big" @click="moveSelectedOptionsToMyBasket" class="button">장바구니에 담기</v-button>
+    <v-button 
+    v-if="selectedOptions.length > 0" 
+    color="main" 
+    size="big" 
+    @click="()=>{moveSelectedOptionsToMyBasket();toggleSlider();}" 
+    class="button">
+      장바구니에 담기
+    </v-button>
     
   </v-slider>
 
@@ -139,6 +146,8 @@ export default {
         goods: this.getSelectedGoods,
         selectedOptions: this.selectedOptions,
       });
+
+      this.selectedOptions = [];
     }
   },
 
