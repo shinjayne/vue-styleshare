@@ -1,15 +1,24 @@
 <template>
   <div class="base-layout">
+    <!-- 내비게이션 바 -->
     <div class="nav">
+      <!-- 로고 및 타이틀 -->
       <router-link :to="{name:'market.index'}">
         <v-h size="first" theme="light">StyleShare Store</v-h>
       </router-link>
-      <router-link :to="{name:'basket.index'}">
-        <v-button size="big" color="white" class="basket">
-          장바구니 
-          <v-dot v-if="getMyBasketLength!=0" class="dot">{{getMyBasketLength}}</v-dot>
-        </v-button>
-      </router-link>
+
+      <!-- 내비게이션 버튼 -->
+      <div class="buttons">
+        <router-link :to="{name: 'market.index'}">
+          <v-button color="main">Market</v-button>
+        </router-link>
+        <router-link :to="{name:'basket.index'}">
+          <v-button size="big" color="white" class="basket">
+            장바구니 
+            <v-dot v-if="getMyBasketLength!=0" class="dot">{{getMyBasketLength}}</v-dot>
+          </v-button>
+        </router-link>
+      </div>
     </div>
     <!-- 여기 Slot 에 각 페이지별 컨텐츠가 나타납니다!  -->
     <div class="container">
@@ -109,10 +118,14 @@ export default {
       background-color: $color-gray-600;
 
       color: $color-gray-50;
-
-      .basket{
-        .dot{
+      .buttons{
+        display: flex;
+        align-items: center; 
+        .basket{
           margin-left: 10px;
+          .dot{
+            margin-left: 10px;
+          }
         }
       }
     }
@@ -123,7 +136,7 @@ export default {
 
       width: 90%;
       max-width: 700px;
-      border: 1px darkblue solid;
+      // border: 1px darkblue solid;
 
       .title{
         margin-bottom: 10px;

@@ -3,6 +3,9 @@
 </template>
 
 <script>
+/*
+Heading 과 같은 제목 레벨의 글자 크기를 표현하는 기초 컴포넌트입니다.
+*/
 export default {
   name: 'styleshare-heading',
 

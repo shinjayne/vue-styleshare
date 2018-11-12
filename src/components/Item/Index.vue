@@ -5,6 +5,9 @@
 </template>
 
 <script>
+/*
+Item 을 나타내는 모습을 띄는 기초 컴포넌트입니다.
+*/
 export default {
   name: 'styleshare-item',
 }
