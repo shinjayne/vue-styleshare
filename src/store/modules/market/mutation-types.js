@@ -3,8 +3,10 @@
  * ============
  */
 
-// export const CHECK = 'CHECK';
+export const CONCAT_GOODS_LIST = 'CONCAT_GOODS_LIST';
+export const CHANGE_NEXT_PAGE = 'CHANGE_NEXT_PAGE';
 
 export default {
-  // CHECK,
+  CONCAT_GOODS_LIST,
+  CHANGE_NEXT_PAGE,
 };

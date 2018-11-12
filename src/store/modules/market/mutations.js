@@ -8,10 +8,10 @@ import * as types from './mutation-types';
 
 /* eslint-disable no-param-reassign */
 export default {
-  // [CHECK](state) {
-  //   state.authenticated = !!localStorage.getItem('id_token');
-  //   if (state.authenticated) {
-  //     Vue.$http.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('id_token')}`;
-  //   }
-  // },
+  [types.CONCAT_GOODS_LIST](state, { list }) {
+    state.goodsList.goods = state.goodsList.goods.concat(list);
+  },
+  [types.CHANGE_NEXT_PAGE](state, { newNextPage }) {
+    state.goodsList.nextPage = newNextPage;
+  },
 };

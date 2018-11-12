@@ -10,7 +10,13 @@
 getGoodsList
 Store 에 있는 goods 의 list 를 조회한다.
 */
-export const getGoodsList = state => state.goods;
+export const getGoodsList = state => state.goodsList.goods;
+
+/*
+getGoodsListNextPage
+goods list 의 다음 페이지 번호를 조회한다.
+*/
+export const getGoodsListNextPage = state => state.goodsList.nextPage;
 
 /*
 getSelectedGoods
@@ -21,5 +27,6 @@ export const getSelectedGoods = state => state.selectedGoods;
 
 export default {
   getGoodsList,
+  getGoodsListNextPage,
   getSelectedGoods,
 };

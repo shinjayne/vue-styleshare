@@ -31,9 +31,35 @@ export default {
 
   computed:{
     ...mapGetters({
+      /*
+      Store Getters 를 매핑합니다.
+      */
       getGoodsList: 'market/getGoodsList',
     }),
   },
+
+  methods: {
+    ...mapActions({
+      /*
+      Store Actions 를 매핑합니다.
+      */
+      resetNextPageAction : 'market/resetNextPage',
+      loadGoodsListFromServerAction : 'market/loadGoodsListFromServer',
+    }),
+    
+  },
+
+  mounted() {
+    /*
+    Lifecycle Hook. View 가 생성되고 바로 실행됩니다.
+    */
+   
+   console.log(process.env);
+   // 페이지를 1로 초기화시킵니다.
+   this.resetNextPageAction();
+   // goods list 를 불러옵니다.
+   this.loadGoodsListFromServerAction();
+  }
   
 }
 </script>
