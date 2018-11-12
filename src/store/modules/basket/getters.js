@@ -29,6 +29,31 @@ export const getCheckedCount = (state) => {
 };
 
 /*
+장바구니 해당 index 의 제품의 provider가(체크된 항목들 중) "유일하지 않고 더 싼 게 존재하는" => 즉 "묶음 배송 대상인" 지를 확인하고
+boolean 값을 리턴합니다.
+*/
+export const getSelectedHasCheckedCheaperShipping = state => (index) => {
+  const selected = state.myBasket[index];
+  const myShippingPrice = selected.goods.shipping.price;
+  const len = state.myBasket.length;
+
+  let hasBrother = false;
+  for (let i = 0; i < len; i += 1) {
+    const target = state.myBasket[i];
+    const shippingPrice = target.goods.shipping.price;
+    if ((target.goods.provider === selected.goods.provider) && target.checked) {
+      // 판매자가 같은데, 체크되어있는 상대라면
+
+      // 나보다 가격이 싼 상대인지 확인
+      if (myShippingPrice > shippingPrice) hasBrother = true;
+      // 가격이 같다면 나보다 앞선 상대인지 확인
+      else if ((myShippingPrice === shippingPrice) && (i < index)) hasBrother = true;
+    }
+  }
+  return hasBrother;
+};
+
+/*
 체크된 항목들에 대한 가격을 합산합니다.
 */
 export const getCheckedPrice = (state) => {
@@ -47,9 +72,14 @@ export const getCheckedPrice = (state) => {
   return result;
 };
 
+/*
+체크된 항목들에 대한 운송 비용을 합산합니다.
+*/
+
 export default {
   getMyBasket,
   getMyBasketLength,
+  getSelectedHasCheckedCheaperShipping,
   getCheckedCount,
   getCheckedPrice,
 };

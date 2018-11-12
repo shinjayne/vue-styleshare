@@ -18,8 +18,19 @@
     </v-item>
 
     <!-- 총액 보여주기 -->
+    <div class="right spaced">
+      <v-h size="third" theme="dark">제품 가격: </v-h>
+      <v-h size="third" theme="red">{{priceSum}} 원</v-h>
+    </div>
+
+    <div class="right spaced">
+      <v-h size="third" theme="dark">배송비: </v-h>
+      <v-h v-if="isBundledByBrother" size="third" theme="red">면제</v-h>
+      <v-h v-else size="third" theme="red">{{shippingPrice}} 원</v-h>
+    </div>
     <div class="right">
-      <v-h size="third" theme="red">총 {{priceSum}} 원</v-h>
+      <v-h v-if="isBundledByBrother" size="fourth" theme="orange">운송비 더 저렴한 같은 회사 상품에 묶음 배송</v-h>
+      <v-h v-if="!canBundle" size="fourth" theme="blue">묶음 배송 대상이 아님</v-h>
     </div>
   </v-card>  
 </template>
@@ -68,6 +79,21 @@ export default {
       required: false,
       default: 0,
     },
+    hasCheckedBrother: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    canBundle: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    shippingPrice: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
     selectedOptions: {
       type: Array,
       required: false,
@@ -84,7 +110,13 @@ export default {
   },
 
   computed:{
+    isBundledByBrother(){
+      return this.hasCheckedBrother && this.canBundle;
+    },
     priceSum(){
+      /*
+      가격 합을 계산합니다.
+      */
       let totalCount = 0;
       this.selectedOptions.map(selected=>{totalCount+=selected.count});
       return totalCount * this.price;
@@ -109,6 +141,9 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    &.spaced{
+      margin-bottom: 10px;
+    }
   }
   .spread{
     display: flex;

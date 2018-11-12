@@ -17,6 +17,9 @@
     :name="singleItem.goods.name"
     :provider="singleItem.goods.provider"
     :price="singleItem.goods.price"
+    :hasCheckedBrother="getSelectedHasCheckedCheaperShipping(index)"
+    :canBundle="singleItem.goods.shipping.canBundle"
+    :shippingPrice="singleItem.goods.shipping.price"
     :selected-options="singleItem.selectedOptions"
     :checked="singleItem.checked"
     @check="checkSingleItemOnBasketAction({index})"
@@ -61,6 +64,7 @@ export default {
       getMyBasket: 'basket/getMyBasket',
       getMyBasketLength: 'basket/getMyBasketLength',
       getCheckedCount: 'basket/getCheckedCount',
+      getSelectedHasCheckedCheaperShipping: 'basket/getSelectedHasCheckedCheaperShipping',
       getCheckedPrice: 'basket/getCheckedPrice',
     }),
   },
