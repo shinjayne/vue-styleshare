@@ -1,19 +1,25 @@
 <template>
   <base-layout title="상품 정보">
+  <!-- 상품정보 로드 실패시 나타날 메세지  -->
+  <v-card color="red" v-if="getSelectedGoodsComplete && !getSelectedGoodsSuccess">
+    상품 정보를 로드하는데에 실패하였습니다.
+  </v-card>
   <!-- 상품 상세 정보 -->
   <goods-info-card
-  class="goods-info"
+  v-if="getSelectedGoodsComplete && getSelectedGoodsSuccess"
   :name="getSelectedGoods.name"
   :provider="getSelectedGoods.provider"
   :price="getSelectedGoods.price"
   @click="toggleSlider"
+  class="goods-info"
   />
   <!-- 배송비 및 묶음배송 정보 -->
   <shipping-info-card
-  class="shipping-info"
+  v-if="getSelectedGoodsComplete && getSelectedGoodsSuccess"
   :method="getSelectedGoods.shipping.method"
   :price="getSelectedGoods.shipping.price"
   :canBundle="getSelectedGoods.shipping.canBundle"
+  class="shipping-info"
   />
   <!-- 옵션 선택 슬라이더 -->
   <v-slider v-if="showSlider" class="slider">
@@ -53,6 +59,7 @@
 import {mapGetters, mapActions} from 'vuex';
 
 import BaseLayout from '@/layouts/Base';
+import VCard from '@/components/Card/Index';
 import VH from '@/components/H/Index';
 import VSlider from '@/components/Slider/Index';
 import VButton from '@/components/Button/Index';
@@ -66,6 +73,7 @@ export default {
 
   components: {
     BaseLayout,
+    VCard,
     VH,
     VSlider,
     VButton,
@@ -104,6 +112,10 @@ export default {
   },
   methods: {
     ...mapActions({
+      /*
+      Store Action Mapping
+      */
+      loadGoodsDetailFromServerAction: 'market/loadGoodsDetailFromServer',
       pushGoodsToMyBasketAction: 'basket/pushGoodsToMyBasket',
     }),
     /*
@@ -153,9 +165,23 @@ export default {
 
   computed:{
     ...mapGetters({
+      /*
+      Store Getter Mapping
+      */      
       getSelectedGoods: 'market/getSelectedGoods',
+      getSelectedGoodsComplete: 'market/getSelectedGoodsComplete',
+      getSelectedGoodsSuccess: 'market/getSelectedGoodsSuccess',
     }),
   },
+
+  mounted(){
+    /*
+    페이지 생성될때 최초로 불리는 라이프사이클 훅
+    */
+
+   // detail 값을 불러옵니다
+   this.loadGoodsDetailFromServerAction({ goodsId: this.id });
+  }
 }
 </script>
 

@@ -15,6 +15,12 @@ class GoodsProxy extends Proxy {
     */
     return this.submit('get', `${this.endpoint}/goods/`);
   }
+  retrieveGoods({ goodsId }) {
+    /*
+    Retrieve Goods API Endpoint 에 접근합니다.
+    */
+    return this.submit('get', `${this.endpoint}/goods/${goodsId}/`);
+  }
 }
 
 export default GoodsProxy;

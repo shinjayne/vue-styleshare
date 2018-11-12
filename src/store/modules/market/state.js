@@ -9,53 +9,16 @@ export default {
   Detail 정보를 조회하는 Goods
   */
   selectedGoods: {
-    "id": 1,
-    "name": "Python Hood T-Shirts",
-    "provider": "StyleShare",
-    "price": 20000,
-    "options": [
-      {
-        "id": 1001,
-        "color": "yellow",
-        "size": "S",
-        "stock": 10
-      },
-      {
-        "id": 1002,
-        "color": "yellow",
-        "size": "M",
-        "stock": 10
-      },
-      {
-        "id": 1003,
-        "color": "yellow",
-        "size": "L",
-        "stock": 10
-      },
-      {
-        "id": 1004,
-        "color": "blue",
-        "size": "S",
-        "stock": 10
-      },
-      {
-        "id": 1005,
-        "color": "blue",
-        "size": "M",
-        "stock": 10
-      },
-      {
-        "id": 1006,
-        "color": "blue",
-        "size": "L",
-        "stock": 10
-      }
-    ],
-    "shipping": {
-      "method": "FREE",
-      "price": 0,
-      "canBundle": true
-    }
+    /*
+    서버로부터 로드되었는지 여부
+    서버로부터의 로드가 성공인지 실패인지 여부
+    */
+    loadComplete: false,
+    loadSuccess: false,
+    /*
+    실제 object 데이터
+    */
+    goods: null,
   },
 
   /*

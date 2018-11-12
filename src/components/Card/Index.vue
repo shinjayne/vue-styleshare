@@ -1,12 +1,26 @@
 <template>
-  <div class="card" @click="$emit('click')">
+  <div :class="'card '+ color" @click="$emit('click')">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
+  /*
+  스타일쉐어 앱의 모든 카드 컴포넌트의 모양을 담당하는 기본 컴포넌트입니다.
+  */
   name: 'styleshare-card',
+
+  props: {
+    color: {
+      /*
+      색상 옵션
+      */
+      type: String,
+      required: false,
+      default: 'white', // red 
+    },
+  }
 }
 </script>
 
@@ -17,6 +31,10 @@ export default {
   .card{
     padding: 20px 30px;
     background-color: $color-gray-50;
+    
+    &.red{
+      background-color: $color-red-light;
+    }
   }
 </style>
 

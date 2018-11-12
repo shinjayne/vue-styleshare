@@ -53,8 +53,7 @@ export default {
     /*
     Lifecycle Hook. View 가 생성되고 바로 실행됩니다.
     */
-   
-   console.log(process.env);
+
    // 페이지를 1로 초기화시킵니다.
    this.resetNextPageAction();
    // goods list 를 불러옵니다.
