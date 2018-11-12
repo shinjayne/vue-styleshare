@@ -28,8 +28,12 @@
     />
 
     <v-card class="bottom-card">
-      <v-h size="second">선택된 총액</v-h>
-      <v-h size="third" theme="red">{{getCheckedPrice}} 원</v-h>
+      <v-h size="third" class="row">상품 총액</v-h>
+      <v-h size="third" theme="red" class="row">{{getCheckedPrice}} 원</v-h>
+      <v-h size="third" class="row">배송비 총액</v-h>
+      <v-h size="third" theme="red" class="row">{{getCheckedShippingPrice}} 원</v-h>      
+       <v-h size="second" class="row">합산 총액</v-h>
+      <v-h size="third" theme="red" class="row">{{getCheckedPrice + getCheckedShippingPrice}} 원</v-h>   
       <v-button>구매하기</v-button>
     </v-card>
   </base-layout>
@@ -66,6 +70,7 @@ export default {
       getCheckedCount: 'basket/getCheckedCount',
       getSelectedHasCheckedCheaperShipping: 'basket/getSelectedHasCheckedCheaperShipping',
       getCheckedPrice: 'basket/getCheckedPrice',
+      getCheckedShippingPrice: 'basket/getCheckedShippingPrice',
     }),
   },
 
@@ -107,5 +112,10 @@ export default {
   }
   .go-card{
     margin-bottom: 20px;
+  }
+  .bottom-card{
+    .row{
+      margin-bottom: 10px;
+    }
   }
 </style>

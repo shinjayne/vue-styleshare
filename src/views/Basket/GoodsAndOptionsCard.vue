@@ -28,9 +28,10 @@
       <v-h v-if="isBundledByBrother" size="third" theme="red">면제</v-h>
       <v-h v-else size="third" theme="red">{{shippingPrice}} 원</v-h>
     </div>
-    <div class="right">
+    <div class="right" v-if="checked">
       <v-h v-if="isBundledByBrother" size="fourth" theme="orange">운송비 더 저렴한 같은 회사 상품에 묶음 배송</v-h>
       <v-h v-if="!canBundle" size="fourth" theme="blue">묶음 배송 대상이 아님</v-h>
+      <v-h v-if="isCheapestBundledPrice" size="fourth">{{provider}} 묶음 배송비</v-h>
     </div>
   </v-card>  
 </template>
@@ -112,6 +113,12 @@ export default {
   computed:{
     isBundledByBrother(){
       return this.hasCheckedBrother && this.canBundle;
+    },
+    isCheapestBundledPrice(){
+      /*
+      내 가격이 bundled 된 가격중 shipping price 가 최저가인가
+      */
+     return this.canBundle && !this.hasCheckedBrother;
     },
     priceSum(){
       /*
