@@ -26,8 +26,12 @@
     <!-- 상단 버튼 -->
     <v-button color="white" size="big" @click="toggleSlider" class="button">닫기</v-button>
     
-    <!-- 옵션 종류 -->
-    <v-option :values="getSelectedGoods.options" @click="appendToSelectedOptions" class="option-input"/>
+    <!-- 옵션 선택 Form -->
+    <v-option 
+    :values="getSelectedGoods.options" 
+    :stringify="optionObjectToString" 
+    @click="appendToSelectedOptions" 
+    class="option-input"/>
     <!-- 선택된 옵션들과 수량 조정 -->
     <option-item 
     v-for="selected in selectedOptions" 
@@ -131,7 +135,11 @@ export default {
       // 만약 추가하려는 항목이 이미 존재한다면, 추가하지 않는다.
       const exsistOption = this.selectedOptions.find(selected => {return selected.option.id == newOption.id});
       if(!!exsistOption) 
-      return
+        return
+      // 만약 추가하려는 항목의 재고가 없다면, 추가하지 않는다.
+      if(newOption.stock == 0)
+        return
+
       // 일반적인 경우 selectedOptions 에 항목을 추가한다.
       this.selectedOptions.push({
         count: 0,
@@ -160,7 +168,14 @@ export default {
       });
 
       this.selectedOptions = [];
-    }
+    },
+    optionObjectToString(option) {
+      /*
+      option 을 String 으로 예쁘게 보여줄 방식을 정의합니다.
+      */
+      return "Color: " + option.color + "| Size: " + option.size + " (" + option.stock + " 개 남음)"
+    },
+
   },
 
   computed:{

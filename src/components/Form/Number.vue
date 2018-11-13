@@ -1,8 +1,8 @@
 <template>
   <div class="number">
-    <div class="up" @click="increase">+</div>
-    <div class="count">{{value}}</div>
     <div class="down" @click="decrease">-</div>
+    <div class="count">{{value}}</div>
+    <div class="up" @click="increase">+</div>
   </div>
 </template>
 
@@ -93,10 +93,10 @@ export default {
         background-color: $color-gray-50;
       }
     }
-    .up{
+    .down{
       border-radius: 3px 0 0 3px;
     }
-    .down{
+    .up{
       border-radius: 0 3px 3px 0;
     }
     .count{

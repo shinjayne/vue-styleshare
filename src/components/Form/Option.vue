@@ -5,21 +5,33 @@
       <slot>옵션을 선택하세요</slot> ({{values.length}}가지)
     </div>
     <!-- 펼처친 옵션 선택지 부분 -->
-    <div v-if="showSelectable" class="selectable">
+    <v-popup v-if="showSelectable" class="selectable">
+      <v-remove size="big" @click="toggleSelectable" class="remove-button"/>
       <!-- 개별요소 클릭하면, 해당 요소에 대한 @click event 실행되고, 선택지는 닫힌다 -->
-      <div v-for="(val, index) in values" :key="index" @click="()=>{$emit('click', val); toggleSelectable();}" class="single">
-        {{val}}
-      </div>
-    </div>
+      <v-item v-for="(val, index) in values" :key="index" @click="()=>{$emit('click', val); toggleSelectable();}" class="single">
+        {{stringify(val)}}
+      </v-item>
+    </v-popup>
   </div>
 </template>
 
 <script>
+import VPopup from '@/components/Popup/Index';
+import VItem from '@/components/Item/Index';
+import VRemove from '@/components/Button/Remove';
+
 export default {
   /*
   Native Html 의 Option Input 과 같은 역할을 하는 Component
   */
   name: 'styleshare-option',
+
+  components: {
+    VPopup,
+    VItem,
+    VRemove,
+  },
+
   props:{
     values: {
       /*
@@ -29,6 +41,14 @@ export default {
       required: false,
       default: ()=>[],
     },
+    stringify: {
+      /*
+      value 를 어떻게 사용자에게 String 으로 보여줄지에 대한 함수
+      */
+     type: Function,
+     required: false,
+     default: val=>val,
+    }
   },
 
   data(){
@@ -77,20 +97,14 @@ export default {
       }
     }
     .selectable{
-      position: absolute;
-      top: 34px;
-      max-height: 200px;
-      width: 100%;
-
-      border: 1px solid $color-gray-400;
-      background-color: $color-gray-0;
-
-      overflow-y: scroll;
-
+      .remove-button{
+        margin-bottom: 10px;
+      }
       .single{
+        margin-bottom: 10px;
         cursor: pointer;
         &:hover{
-          background-color: $color-gray-50;
+          background-color: $color-gray-100;
         }        
       }
     }
