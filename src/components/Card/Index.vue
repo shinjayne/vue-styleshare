@@ -1,6 +1,8 @@
 <template>
-  <div :class="'card '+ color" @click="$emit('click')">
-    <slot></slot>
+  <div
+    :class="'card '+ color"
+    @click="$emit('click')">
+    <slot/>
   </div>
 </template>
 
@@ -9,7 +11,7 @@ export default {
   /*
   스타일쉐어 앱의 모든 카드 컴포넌트의 모양을 담당하는 기본 컴포넌트입니다.
   */
-  name: 'styleshare-card',
+  name: 'StyleshareCard',
 
   props: {
     color: {
@@ -18,10 +20,10 @@ export default {
       */
       type: String,
       required: false,
-      default: 'white', // red 
+      default: 'white', // red
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -31,11 +33,10 @@ export default {
   .card{
     padding: 20px 30px;
     background-color: $color-gray-50;
-    
+
     &.red{
       background-color: $color-red-light;
     }
   }
 </style>
-
 

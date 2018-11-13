@@ -1,14 +1,14 @@
 <template>
   <div class="dot">
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'styleshare-dot',
+  name: 'StyleshareDot',
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

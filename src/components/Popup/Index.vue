@@ -11,8 +11,8 @@ export default {
   /*
   스타일쉐어 스토어의 기본 팝업 디자인을 정의합니다.
   */
-  name: 'styleshare-popup',
-}
+  name: 'StylesharePopup',
+};
 </script>
 
 <style lang="scss" >
@@ -28,7 +28,7 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: #3535358c;
-    
+
 
     .container{
       display:flex;

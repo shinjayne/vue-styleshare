@@ -1,6 +1,8 @@
 <template>
-  <div class="item" @click="$emit('click')">
-    <slot></slot>
+  <div
+    class="item"
+    @click="$emit('click')">
+    <slot/>
   </div>
 </template>
 
@@ -9,8 +11,8 @@
 Item 을 나타내는 모습을 띄는 기초 컴포넌트입니다.
 */
 export default {
-  name: 'styleshare-item',
-}
+  name: 'StyleshareItem',
+};
 </script>
 
 <style lang="scss" scoped>
@@ -27,5 +29,4 @@ export default {
     border-radius: 3px;
   }
 </style>
-
 

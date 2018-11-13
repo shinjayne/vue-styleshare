@@ -2,7 +2,7 @@
   <div class="slider">
     <div class="solid-part">
       <div class="container">
-        <slot></slot>
+        <slot/>
       </div>
     </div>
   </div>
@@ -10,9 +10,9 @@
 
 <script>
 export default {
-  name: 'styleshare-slider',
+  name: 'StyleshareSlider',
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -22,7 +22,7 @@ export default {
     position: fixed;
     top: 0px;
     left: 0px;
-    
+
     width: 100vw;
     height: 100vh;
 
@@ -44,20 +44,19 @@ export default {
 
       overflow-y: scroll;
       .container{
-        
+
         width: 80%;
         max-width: 700px;
-        
+
         padding: 20px 0;
 
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
         min-height: fit-content;
       }
     }
   }
 </style>
-
 

@@ -42,7 +42,7 @@ export default [
     meta: {
       auth: false,
     },
-  },  
+  },
 
   // 모든 페이지는 market 으로 통한다.
   {

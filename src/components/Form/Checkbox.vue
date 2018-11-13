@@ -1,5 +1,7 @@
 <template>
-  <div :class="String(value) + ' checkbox'" @click="$emit('input', !value); $emit('click');">
+  <div
+    :class="String(value) + ' checkbox'"
+    @click="$emit('input', !value); $emit('click');">
     <div v-if="value">✔︎</div>
   </div>
 </template>
@@ -9,10 +11,10 @@ export default {
   /*
   v-model 을 이용해 true, false 를 binding 할 수 있는 체크박스 컴포넌트입니다.
   */
-  name: 'styleshare-checkbox',
+  name: 'StyleshareCheckbox',
 
-  props:{
-    value:{
+  props: {
+    value: {
       /*
       v-model 로 바인딩되는 boolean 값
       */
@@ -20,8 +22,8 @@ export default {
       required: false,
       default: false,
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +33,7 @@ export default {
     background-color: $color-gray-100;
     &:hover{
       background-color: $color-main;
-    }    
+    }
   }
   .true{
     color: $color-gray-0;
@@ -53,5 +55,4 @@ export default {
     cursor: pointer;
   }
 </style>
-
 

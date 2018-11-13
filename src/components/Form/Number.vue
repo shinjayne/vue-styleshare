@@ -1,8 +1,12 @@
 <template>
   <div class="number">
-    <div class="down" @click="decrease">-</div>
-    <div class="count">{{value}}</div>
-    <div class="up" @click="increase">+</div>
+    <div
+      class="down"
+      @click="decrease">-</div>
+    <div class="count">{{ value }}</div>
+    <div
+      class="up"
+      @click="increase">+</div>
   </div>
 </template>
 
@@ -11,9 +15,9 @@ export default {
   /*
   v-model 로 받은 Number value 값을 조정할 수 있는 form component 입니다.
   */
-  name: 'styleshare-number',
+  name: 'StyleshareNumber',
 
-  props:{
+  props: {
     value: {
       /*
       v-model 로 받는 값입니다.
@@ -37,34 +41,31 @@ export default {
       type: Number,
       required: false,
       default: -1000,
-    }
-  },
-
-  methods:{
-    increase(){
-      /*
-      max 값과 비교하여 value 를 높입니다.
-      */
-      if(this.value+1 > this.max)
-        return
-      this.$emit('input', this.value+1);
     },
-    decrease(){
+  },
+
+  mounted() {
+    // 만약 v-model 초기값이 min 보다 작거나 max 보다 크다면, 조정합니다.
+    if (this.value < this.min || this.value > this.max) { this.$emit('input', this.min); }
+  },
+
+  methods: {
+    increase() {
       /*
       max 값과 비교하여 value 를 높입니다.
       */
-      if(this.value-1 < this.min)
-        return
-      this.$emit('input', this.value-1);
-    }    
+      if (this.value + 1 > this.max) { return; }
+      this.$emit('input', this.value + 1);
+    },
+    decrease() {
+      /*
+      max 값과 비교하여 value 를 높입니다.
+      */
+      if (this.value - 1 < this.min) { return; }
+      this.$emit('input', this.value - 1);
+    },
   },
-
-  mounted(){
-    // 만약 v-model 초기값이 min 보다 작거나 max 보다 크다면, 조정합니다.
-    if(this.value < this.min || this.value > this.max)
-      this.$emit('input', this.min); 
-  },
-}
+};
 </script>
 
 <style lang="scss" scoped>

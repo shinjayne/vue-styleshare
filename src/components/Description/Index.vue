@@ -1,17 +1,17 @@
 <template>
   <div class="description">
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 
 <script>
 export default {
   /*
-  줄글 설명에 대한 
+  줄글 설명에 대한
   */
-  name: 'styleshare-description',
+  name: 'StyleshareDescription',
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -28,5 +28,4 @@ export default {
     font-color: $color-gray-600;
   }
 </style>
-
 

@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div/>
 </template>
 
 <script>
@@ -7,8 +7,8 @@
 이미지 표시를 담당하는 기초 컴포넌트입니다.
 */
 export default {
-  name: 'styleshare-img',
-}
+  name: 'StyleshareImg',
+};
 </script>
 
 <style lang="scss" scoped>
@@ -17,6 +17,6 @@ export default {
     border: 1px solid $color-gray-100;
     border-radius: 3px;
 
-    background-color: $color-gray-400;     
+    background-color: $color-gray-400;
   }
 </style>

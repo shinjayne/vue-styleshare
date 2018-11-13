@@ -1,11 +1,21 @@
 <template>
   <v-card>
     <v-img class="image"/>
-    <v-h class="head" size="fourth">{{provider}}</v-h>
-    <v-h class="head" size="second">{{name}}</v-h>
-    <v-h class="head" size="third" theme="red">{{price}} 원</v-h>
-    <v-button color="main" size="small" @click="$emit('click')">옵션 보기</v-button>
-  </v-card>  
+    <v-h
+      class="head"
+      size="fourth">{{ provider }}</v-h>
+    <v-h
+      class="head"
+      size="second">{{ name }}</v-h>
+    <v-h
+      class="head"
+      size="third"
+      theme="red">{{ price }} 원</v-h>
+    <v-button
+      color="main"
+      size="small"
+      @click="$emit('click')">옵션 보기</v-button>
+  </v-card>
 </template>
 
 <script>
@@ -18,7 +28,7 @@ export default {
   /*
   Goods Detail 페이지에 종속된 상품 상세 정보 카드
   */
-  name: 'goods-info-card',
+  name: 'GoodsInfoCard',
 
   components: {
     VCard,
@@ -51,9 +61,9 @@ export default {
       type: Number,
       required: false,
       default: 0,
-    }
+    },
   },
-}
+};
 </script>
 
 
@@ -66,6 +76,4 @@ export default {
     margin-bottom: 10px;
   }
 </style>
-
-
 
