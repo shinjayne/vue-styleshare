@@ -23,6 +23,8 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
   /*
   서버로부터 goods list 들을 불러오고, store 에 저장합니다
   */
+  // 다음 페이지가 없다면 실행하지 않는다
+  if (!getters.getGoodsListNextPage) return;
 
   // 로드를 시작한다.
   commit(types.LOAD_START_GOODS_LIST);
@@ -42,7 +44,8 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
     const { results, next } = response;
 
     commit(types.CONCAT_GOODS_LIST, { list: results });
-    commit(types.CHANGE_NEXT_PAGE, { newNextPage: next });
+    if (!next) commit(types.CHANGE_NEXT_PAGE, { newNextPage: null });
+    else commit(types.CHANGE_NEXT_PAGE, { newNextPage: getters.getGoodsListNextPage + 1 });
     isSuccessful = true;
   } catch (e) {
     // 실패하면 console 에 남긴다.
