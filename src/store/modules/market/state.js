@@ -27,6 +27,12 @@ export default {
   */
   goodsList: {
     /*
+    서버로부터 로드되었는지 여부
+    서버로부터의 로드가 성공인지 실패인지 여부
+    */
+    loadComplete: false,
+    loadSuccess: false,
+    /*
     goods : Array
     Goods (상품) List
     */

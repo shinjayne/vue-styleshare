@@ -23,6 +23,10 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
   /*
   서버로부터 goods list 들을 불러오고, store 에 저장합니다
   */
+
+  // 로드를 시작한다.
+  commit(types.LOAD_START_GOODS_LIST);
+
   const goodsProxy = new GoodsProxy();
 
   // parameter 설정
@@ -31,6 +35,7 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
     page: getters.getGoodsListNextPage,
   });
 
+  let isSuccessful = false;
   try {
     // listGoods API Call 을 수행하고, 받은 정보를 state 에 기록한다.
     const response = await goodsProxy.listGoods();
@@ -38,10 +43,14 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
 
     commit(types.CONCAT_GOODS_LIST, { list: results });
     commit(types.CHANGE_NEXT_PAGE, { newNextPage: next });
+    isSuccessful = true;
   } catch (e) {
     // 실패하면 console 에 남긴다.
     console.log(e);
+    isSuccessful = false;
   }
+  // 로드가 끝났음과 요청 결과의 성공과 실패를 알린다.
+  commit(types.LOAD_ENDED_GOODS_LIST, { isSuccessful });
 };
 
 export const loadGoodsDetailFromServer = async ({ commit }, { goodsId }) => {
