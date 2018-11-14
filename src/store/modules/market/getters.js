@@ -19,6 +19,12 @@ goods list 의 다음 페이지 번호를 조회한다.
 export const getGoodsListNextPage = state => state.goodsList.nextPage;
 
 /*
+getGoodsListSearchKey
+goods list 의 검색 키워드를 조회한다.
+*/
+export const getGoodsListSearchKey = state => state.goodsList.searchKey;
+
+/*
 getGoodsListComplete
 goodsList 로드 요청이 끝난는지를 확인합니다.
 */
@@ -51,6 +57,7 @@ export const getSelectedGoodsSuccess = state => state.selectedGoods.loadSuccess;
 export default {
   getGoodsList,
   getGoodsListNextPage,
+  getGoodsListSearchKey,
   getGoodsListComplete,
   getGoodsListSuccess,
   getSelectedGoods,

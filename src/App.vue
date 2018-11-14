@@ -15,6 +15,6 @@ export default {
   /**
    * The name of the application.
    */
-  name: 'Styleshare Store',
+  name: 'styleshare-store',
 };
 </script>

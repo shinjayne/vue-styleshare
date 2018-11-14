@@ -15,8 +15,15 @@ export const resetNextPage = async ({ commit }) => {
   /*
   nextPage 를 1로 초기화시킵니다
   */
-  commit(types.CHANGE_NEXT_PAGE, { newNextPage: 1 });
-  commit(types.CLEAR_GOODS_LIST);
+  await commit(types.CHANGE_NEXT_PAGE, { newNextPage: 1 });
+  await commit(types.CLEAR_GOODS_LIST);
+};
+
+export const setSearchKey = async ({ commit }, { newSearchKey }) => {
+  /*
+  searchKey 를 설정합니다.
+  */
+  await commit(types.CHANGE_SEARCH_KEY, { newSearchKey });
 };
 
 export const loadGoodsListFromServer = async ({ commit, getters }) => {
@@ -27,7 +34,7 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
   if (!getters.getGoodsListNextPage) return;
 
   // 로드를 시작한다.
-  commit(types.LOAD_START_GOODS_LIST);
+  await commit(types.LOAD_START_GOODS_LIST);
 
   const goodsProxy = new GoodsProxy();
 
@@ -35,6 +42,7 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
   // 다음 페이지 정보를 가져와서  요청 parameter 로 설정한다.
   goodsProxy.setParameters({
     page: getters.getGoodsListNextPage,
+    search: getters.getGoodsListSearchKey,
   });
 
   let isSuccessful = false;
@@ -43,9 +51,9 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
     const response = await goodsProxy.listGoods();
     const { results, next } = response;
 
-    commit(types.CONCAT_GOODS_LIST, { list: results });
-    if (!next) commit(types.CHANGE_NEXT_PAGE, { newNextPage: null });
-    else commit(types.CHANGE_NEXT_PAGE, { newNextPage: getters.getGoodsListNextPage + 1 });
+    await commit(types.CONCAT_GOODS_LIST, { list: results });
+    if (!next) await commit(types.CHANGE_NEXT_PAGE, { newNextPage: null });
+    else await commit(types.CHANGE_NEXT_PAGE, { newNextPage: getters.getGoodsListNextPage + 1 });
     isSuccessful = true;
   } catch (e) {
     // 실패하면 console 에 남긴다.
@@ -53,7 +61,7 @@ export const loadGoodsListFromServer = async ({ commit, getters }) => {
     isSuccessful = false;
   }
   // 로드가 끝났음과 요청 결과의 성공과 실패를 알린다.
-  commit(types.LOAD_ENDED_GOODS_LIST, { isSuccessful });
+  await commit(types.LOAD_ENDED_GOODS_LIST, { isSuccessful });
 };
 
 export const loadGoodsDetailFromServer = async ({ commit }, { goodsId }) => {
@@ -83,6 +91,7 @@ export const loadGoodsDetailFromServer = async ({ commit }, { goodsId }) => {
 
 export default {
   resetNextPage,
+  setSearchKey,
   loadGoodsListFromServer,
   loadGoodsDetailFromServer,
 };

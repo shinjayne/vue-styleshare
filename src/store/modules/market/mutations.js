@@ -17,6 +17,9 @@ export default {
   [types.CHANGE_NEXT_PAGE](state, { newNextPage }) {
     state.goodsList.nextPage = newNextPage;
   },
+  [types.CHANGE_SEARCH_KEY](state, { newSearchKey }) {
+    state.goodsList.searchKey = newSearchKey;
+  },
   [types.LOAD_START_GOODS_LIST](state) {
     state.goodsList.loadComplete = false;
   },

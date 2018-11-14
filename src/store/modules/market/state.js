@@ -42,5 +42,9 @@ export default {
     goods 다음 페이지에 대한 정보입니다
     */
     nextPage: 1,
+    /*
+    검색 키워드
+    */
+    searchKey: '',
   },
 };

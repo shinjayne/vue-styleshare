@@ -3,7 +3,13 @@
     title="Market"
     subtitle="원하는 물품을 장바구니에!"
     :scrollCallBack="loadMoreAtBottom">
-
+    
+    <!-- 검색창 -->
+    <div class="search">
+      <v-input placeholder="상품을 검색해보세요!" @input="val=>setSearchKeyAction({newSearchKey:val})" @enter="loadAgain" class="input"/>
+      <v-button @click="loadAgain">검색</v-button>
+    </div>
+    
     <!-- 리스트 로드 실패시 나타날 메세지  -->
     <v-card
       v-if="getGoodsListComplete && !getGoodsListSuccess"
@@ -13,8 +19,8 @@
 
     <!-- Goods 카드 리스트 -->
     <v-goods-card
-      v-for="goods in getGoodsList"
-      :key="goods.id"
+      v-for="(goods, index) in getGoodsList"
+      :key="index"
       :name="goods.name"
       :provider="goods.provider"
       :price="goods.price"
@@ -30,6 +36,8 @@ import { mapGetters, mapActions } from 'vuex';
 import BaseLayout from '@/layouts/Base';
 import VCard from '@/components/Card/Index';
 import VH from '@/components/H/Index';
+import VInput from '@/components/Form/Input.vue';
+import VButton from '@/components/Button/Index.vue';
 import VGoodsCard from '@/components/Card/Goods.vue';
 
 export default {
@@ -39,6 +47,8 @@ export default {
     BaseLayout,
     VCard,
     VH,
+    VInput,
+    VButton,
     VGoodsCard,
   },
 
@@ -53,20 +63,34 @@ export default {
     }),
   },
 
+  data() {
+    return {
+      searchKey: "",
+      isEditing: false,
+    }
+  },
+
   methods: {
     ...mapActions({
       /*
       Store Actions 를 매핑합니다.
       */
       resetNextPageAction: 'market/resetNextPage',
+      setSearchKeyAction: 'market/setSearchKey',
       loadGoodsListFromServerAction: 'market/loadGoodsListFromServer',
     }),
     loadMoreAtBottom(dom, isBottom) {
       /*
       scroll 이벤트에 실행되며, 바닥에 도착하면 더 불러옵니다.
       */
-      console.log(isBottom);
       if(isBottom) this.loadGoodsListFromServerAction();
+    },
+    async loadAgain() {
+      /*
+      searchKey 를 변경하고 다시 검색한다.
+      */
+      await this.resetNextPageAction();
+      this.loadGoodsListFromServerAction();
     },
   },
 
@@ -85,6 +109,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .search{
+    display: flex;
+    justify-content: flex-start;
+    min-height: fit-content;
+    margin-bottom: 20px;
+    .input{
+      width:300px;
+      margin-right: 10px;
+    }
+  }
   .goods-card{
     margin-bottom: 20px;
     cursor: pointer;
