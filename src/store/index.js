@@ -11,8 +11,6 @@ import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
 
 // Modules
-import account from './modules/account';
-import auth from './modules/auth';
 import basket from './modules/basket';
 import market from './modules/market';
 
@@ -24,8 +22,6 @@ export default new Vuex.Store({
    * Assign the modules to the store.
    */
   modules: {
-    account,
-    auth,
     basket,
     market,
   },
