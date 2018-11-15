@@ -52,7 +52,7 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
-store.dispatch('auth/check');
+// store.dispatch('auth/check');
 
 /* eslint-disable no-new */
 new Vue({
