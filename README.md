@@ -35,8 +35,8 @@ Vue 의 확장성을 부여하는 다양한 plugin 들이 있습니다.
 1. 먼저 `docker-styleshare` repository 에 있는 local 에 deploy 섹션을 읽고, 백엔드를 구동해야합니다.
 2. `nodejs` 를 설치합니다. (https://nodejs.org/ko/)
 3. `yarn` (패키지 매니져) 을 global에 설치합니다. (https://yarnpkg.com/lang/en/docs/install/#mac-stable)
-4. `yarn` 을 실행해 node module 들을 설치합니다. (그냥 명령줄에 `yarn` 한단어... )
-5. 이 repository 를 clone 받고, root directory 에서 `yarn run serve` 를 실행합니다. 
+4. 이 repository 를 clone 받고, root directory 에서 `yarn` 을 실행해 node module 들을 설치합니다. (그냥 명령줄에 `yarn` 한단어... )
+5. `yarn run serve` 를 실행합니다. 
 6. 브라우저로 `localhost:8080` 으로 접근합니다.
 
 ## 여담 : (소소한) `React` 경험
